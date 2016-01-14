@@ -1,0 +1,40 @@
+From 4e4e680695d9c7e634008ed9bc398999ae13687f Mon Sep 17 00:00:00 2001
+From: Tomas Hrcka <thrcka@redhat.com>
+Date: Wed, 25 Sep 2013 10:54:51 +0200
+Subject: [PATCH] kokot
+
+---
+ build/common.gypi       |    3 ++-
+ build/standalone.gypi   |    1 +
+ preparser/preparser.gyp |    2 +-
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/build/common.gypi b/build/common.gypi
+index 78888b8..e49e54d 100644
+--- a/build/common.gypi
++++ b/build/common.gypi
+@@ -356,7 +356,8 @@
+         'conditions': [
+           ['OS=="linux" or OS=="freebsd" or OS=="openbsd" or OS=="netbsd"', {
+             'cflags': [ '-Wall', '<(werror)', '-W', '-Wno-unused-parameter',
+-                        '-Wnon-virtual-dtor', '-Woverloaded-virtual' ],
++                        '-Wnon-virtual-dtor', '-Woverloaded-virtual',
++			'-Wno-unused-local-typedefs', '-Wno-aggressive-loop-optimizations', '-Wno-unused-but-set-variable' ],
+           }],
+           ['OS=="android"', {
+             'variables': {
+diff --git a/build/standalone.gypi b/build/standalone.gypi
+index 7145a16..84c072c 100644
+--- a/build/standalone.gypi
++++ b/build/standalone.gypi
+@@ -93,6 +93,7 @@
+        or OS=="netbsd"', {
+       'target_defaults': {
+         'cflags': [ '-Wall', '<(werror)', '-W', '-Wno-unused-parameter',
++		    '-Wno-unused-local-typedefs', '-Wno-aggressive-loop-optimizations', '-Wno-unused-but-set-variable',
+                     '-Wnon-virtual-dtor', '-pthread', '-fno-rtti',
+                     '-fno-exceptions', '-pedantic' ],
+         'ldflags': [ '-pthread', ],
+-- 
+1.7.1
+
